@@ -14,7 +14,7 @@ import ProfilePopover from "./ProfilePopover";
 const MainSidebar = () => {
   return (
     <aside className="hidden h-full border-r-2 bg-popover px-4 py-6 text-primary md:block">
-      <div className="sticky top-2 flex h-full flex-col items-center justify-between">
+      <div className="sticky top-4">
         <div>Climate Commons</div>
         <div className="space-y-4">
           <NavIconTooltip icon={<Home />} href={"/home"} label="Home" />

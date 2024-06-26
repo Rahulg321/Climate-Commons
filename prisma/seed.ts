@@ -6,55 +6,56 @@ import { faker } from "@faker-js/faker";
 const prisma = new PrismaClient();
 
 async function main() {
-  const alice = await prisma.user.upsert({
-    where: { email: "alice@prisma.io" },
-    update: {},
-    create: {
-      email: "alice@prisma.io",
-      firstName: faker.person.firstName(),
-      lastName: faker.person.lastName(),
-      password: faker.internet.password(),
-      posts: {
-        create: {
-          title: "Check out Prisma with Next.js",
-          content: "https://www.prisma.io/nextjs",
-          published: true,
+  for (let i = 1; i <= 25; i++) {
+    await prisma.user.create({
+      data: {
+        id: i,
+        firstName: faker.person.firstName(),
+        lastName: faker.person.lastName(),
+        username: faker.internet.userName(),
+        email: faker.internet.email(),
+        password: faker.internet.password(),
+        profilePicture: faker.image.avatar(),
+        bio: faker.person.bio(),
+        jobTitle: faker.person.jobTitle(),
+        phoneNumber: faker.phone.number(),
+      },
+    });
+    for (let j = 0; j <= getRandomIntInclusive(15, 20); j++) {
+      await prisma.post.create({
+        data: {
+          title: faker.lorem.lines(1),
+          slug: faker.lorem.slug(),
+          published: faker.datatype.boolean(),
+          content: faker.lorem.paragraphs({ min: 1, max: 3 }),
+          featuredImage: faker.image.url(),
+          authorId: i,
+          comments: {
+            create: {
+              content: faker.lorem.paragraphs({ min: 1, max: 3 }),
+              authorId: i,
+            },
+          },
         },
-      },
-    },
-  });
-  const bob = await prisma.user.upsert({
-    where: { email: "bob@prisma.io" },
-    update: {},
-    create: {
-      email: "bob@prisma.io",
-      firstName: faker.person.firstName(),
-      lastName: faker.person.lastName(),
-      password: faker.internet.password(),
-      posts: {
-        create: [
-          {
-            title: "Follow Prisma on Twitter",
-            content: "https://twitter.com/prisma",
-            published: true,
-          },
-          {
-            title: "Follow Nexus on Twitter",
-            content: "https://twitter.com/nexusgql",
-            published: true,
-          },
-        ],
-      },
-    },
-  });
-  console.log({ alice, bob });
+      });
+    }
+  }
 }
 main()
   .then(async () => {
+    console.log("successfully seeded database");
     await prisma.$disconnect();
   })
   .catch(async (e) => {
     console.error(e);
+    console.log("could not seed database");
     await prisma.$disconnect();
     process.exit(1);
   });
+
+export function getRandomIntInclusive(min: number, max: number) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  // The maximum is inclusive and the minimum is inclusive
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}

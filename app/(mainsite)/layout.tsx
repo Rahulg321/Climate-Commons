@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Sidebar } from "lucide-react";
 import MainSidebar from "@/components/MainSidebar";
 import { libre, nunito, pt_sans, raleway } from "./fonts";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,10 +27,6 @@ export default function RootLayout({
         className={clsx(
           "min-h-screen bg-background antialiased",
           inter.className,
-          nunito.variable,
-          pt_sans.variable,
-          libre.variable,
-          raleway.variable,
         )}
       >
         <ThemeProvider
@@ -39,12 +36,15 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <main className="grid h-full min-h-screen w-full md:grid-cols-[70px_1fr]">
-            <MainSidebar />
+            <div className="">
+              <MainSidebar />
+            </div>
             <div className="bg-[radial-gradient(100%_50%_at_50%_0%,rgba(0,163,255,0.13)_0,rgba(0,163,255,0)_50%,rgba(0,163,255,0)_100%)] dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]">
               {children}
             </div>
           </main>
         </ThemeProvider>
+        <Toaster />
       </body>
     </html>
   );

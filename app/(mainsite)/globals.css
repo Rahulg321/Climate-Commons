@@ -101,21 +101,6 @@
   }
 }
 
-*,
-*::before,
-*::after {
-  font-family: var(--font-raleway);
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-libre);
-}
-
 .big-container {
   margin-inline: auto;
   width: min(90%, 70.5rem);
@@ -132,4 +117,26 @@ h6 {
 
 .block-space-mini {
   padding-block: min(3vh, 6rem);
+}
+
+.blog-index {
+  display: columns;
+  columns: 4;
+}
+
+.blog-index > * {
+  break-inside: avoid;
+  margin-bottom: 2em;
+}
+
+@media screen and (max-width: 768px) {
+  .blog-index {
+    columns: 2;
+  }
+}
+
+@media screen and (max-width: 458px) {
+  .blog-index {
+    columns: 1;
+  }
 }
