@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { faker } from "@faker-js/faker";
+import { getRandomIntInclusive } from "@/lib/utils";
 
 // docker run -d -e POSTGRES_DB=mydb -e POSTGRES_PASSWORD=testpass123 -e POSTGRES_USER=postgres -p "6500:5432" postgres
 
@@ -21,7 +22,7 @@ async function main() {
         phoneNumber: faker.phone.number(),
       },
     });
-    for (let j = 0; j <= getRandomIntInclusive(15, 20); j++) {
+    for (let j = 0; j <= 16; j++) {
       await prisma.post.create({
         data: {
           title: faker.lorem.lines(1),
@@ -52,10 +53,3 @@ main()
     await prisma.$disconnect();
     process.exit(1);
   });
-
-export function getRandomIntInclusive(min: number, max: number) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  // The maximum is inclusive and the minimum is inclusive
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}

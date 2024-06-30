@@ -1,29 +1,15 @@
-import { Nunito, PT_Sans, Raleway, Libre_Baskerville } from "next/font/google";
+import { Montserrat, Syne } from "next/font/google";
 
-export const nunito = Nunito({
+export const work_sans = Syne({
   subsets: ["latin"],
-  variable: "--font-nunito",
-  weight: ["200", "300", "400", "500", "600", "700", "800"],
+  variable: "--font-work-sans",
+  weight: ["400", "500", "600", "700", "800"],
   fallback: ["system-ui", "arial"],
 });
 
-export const raleway = Raleway({
+export const merriweather = Montserrat({
   subsets: ["latin"],
   variable: "--font-raleway",
-  weight: ["200", "300", "400", "500", "600", "700", "800"],
-  fallback: ["system-ui", "arial"],
-});
-
-export const libre = Libre_Baskerville({
-  subsets: ["latin"],
-  variable: "--font-libre",
-  weight: ["400", "700"],
-  fallback: ["system-ui", "arial"],
-});
-
-export const pt_sans = PT_Sans({
-  subsets: ["latin"],
-  variable: "--font-pt-sans",
-  weight: ["400", "700"],
+  weight: ["300", "400", "700", "900"],
   fallback: ["system-ui", "arial"],
 });

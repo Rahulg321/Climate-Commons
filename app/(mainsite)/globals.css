@@ -33,6 +33,7 @@
     --ring: 240 10% 3.9%;
 
     --radius: 0.5rem;
+    --hover-accent: #6e1fff;
   }
 
   .dark {
@@ -63,6 +64,8 @@
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
+
+    --hover-accent: #adfa1d;
   }
 }
 
@@ -101,6 +104,19 @@
   }
 }
 
+* {
+  font-family: var(--font-merriweather);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-work-sans);
+}
+
 .big-container {
   margin-inline: auto;
   width: min(90%, 70.5rem);
@@ -126,9 +142,14 @@
 
 .blog-index > * {
   break-inside: avoid;
-  margin-bottom: 2em;
+  margin-bottom: 1.5em;
 }
 
+@media screen and (max-width: 1024px) {
+  .blog-index {
+    columns: 3;
+  }
+}
 @media screen and (max-width: 768px) {
   .blog-index {
     columns: 2;

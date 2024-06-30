@@ -10,12 +10,13 @@ import {
   Wrench,
 } from "lucide-react";
 import ProfilePopover from "./ProfilePopover";
+import { ModeToggle } from "./theme-button";
 
 const MainSidebar = () => {
   return (
     <aside className="hidden h-full border-r-2 bg-popover px-4 py-6 text-primary md:block">
       <div className="sticky top-4">
-        <div>Climate Commons</div>
+        <div>CC</div>
         <div className="space-y-4">
           <NavIconTooltip icon={<Home />} href={"/home"} label="Home" />
           <NavIconTooltip icon={<Wrench />} href={"/tools"} label="Tools" />
@@ -36,6 +37,7 @@ const MainSidebar = () => {
             label="Profile"
           />
         </div>
+        <ModeToggle />
         <div>
           <ProfilePopover />
         </div>

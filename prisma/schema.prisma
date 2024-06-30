@@ -23,6 +23,8 @@ model User {
   username       String    @unique
   email          String    @unique
   password       String
+  location       String?
+  websiteLink    String?
   gender         Gender    @default(MALE)
   role           Role      @default(USER)
   firstName      String

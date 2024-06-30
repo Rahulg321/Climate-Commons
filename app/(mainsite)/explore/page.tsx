@@ -10,7 +10,15 @@ const page = async () => {
     orderBy: {
       createdAt: "desc",
     },
-    take: 20,
+    take: 30,
+    include: {
+      author: {
+        select: {
+          username: true,
+          profilePicture: true,
+        },
+      },
+    },
   });
 
   const postCount = await prisma.post.count();
